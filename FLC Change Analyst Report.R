@@ -1,7 +1,7 @@
-###########################################################################################################################################
-## This R script is a sample code that demonstrate how to extract information from two workspaces using Autodesk Fusion Lifecycle V3 API.
-###########################################################################################################################################
-
+#########################################################################################
+## This R script is a sample code that demonstrate 
+## how to extract information from two workspaces using Autodesk Fusion Lifecycle V3 API.
+#########################################################################################
 # Define Fusion Lifecycle username and password, and tenant URL
 User_Name <- "Input your Autodesk ID here"
 User_Password <- "Input your Autodesk ID password here"
