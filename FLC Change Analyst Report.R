@@ -2,12 +2,12 @@
 ## This R script is a sample code that demonstrate how to extract information from two workspaces using Autodesk Fusion Lifecycle V3 API.
 #####################################################################
 
-# Define Forge App Client ID and Secret, BIM 360 Account ID, and Project ID
-App_Client_ID <- "Input Autodesk Forge App Client ID here"
-App_Client_Secret <- "Input Autodesk Forge App Secret ID here"
-BIM360_Account_ID <- "Input Autodesk BIM 360 Account ID here"
-BIM360Docs_Project_ID <- "Input Autodesk BIM 360 Docs Project ID here"
-
+# Define Fusion Lifecycle username and password, and tenant URL
+User_Name <- "Input your Autodesk ID here"
+User_Password <- "Input your Autodesk ID password here"
+Tenant_Url <- "Input your Fusion Lifecycle site Url here"
+Items_BOMs_Workspace_Id <- "Input the workspace Id of your Items & BOMs workspace here"
+Change_Orders_Workspace_Id <- "Input the workspace Id of your Change Orders workspace here"
 
 #Load libraries required for the R script
 library(httr)
