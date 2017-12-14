@@ -10,6 +10,7 @@ Items_BOMs_Workspace_Id = "Input the workspace Id of your Items & BOMs workspace
 Change_Orders_Workspace_Id = "Input the workspace Id of your Change Orders workspace here"
 Change_Order_DmsId = "Input the dmsId of the change order you want to check on"
 WfItems_DmsId_List = list()
+JSESSIONID = ""
 	
 #Load libraries required for the R script
 library(httr)
@@ -25,11 +26,11 @@ req <- httr::POST(paste0(Tenant_Url, "/rest/auth/1/login"),
 	
 #Extract the cookie
 if (status_code(req) == '200') {
-  print(lapply(cookies(req), "[[", 2)$value)
+  JSESSIONID = lapply(cookies(req), "[[", 2)$value
   # Get list of affected items for the ECO
   workflow_items_req <- httr::GET(paste0(Tenant_Url, "/api/rest/v1/workspaces/", Change_Orders_Workspace_Id, "/items/", Change_Order_DmsId, "/workflow-items"),
                                   httr::add_headers("Content-Type" = "application/json"),
-                                  set_cookies("JSESSIONID" = lapply(cookies(req), "[[", 2)$value)
+                                  set_cookies("JSESSIONID" = JSESSIONID)
   );
   if (status_code(workflow_items_req) == '200') {
     workflow_items_content = content(workflow_items_req)
