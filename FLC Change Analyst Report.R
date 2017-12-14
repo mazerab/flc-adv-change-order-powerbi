@@ -43,7 +43,6 @@ if (status_code(req) == '200') {
   
  # Get BOM for each affected items through https://adskmazerab.autodeskplm360.net/api/v3/workspaces/57/items/7422/bom 
   for (dmsId in WfItems_DmsId_List) {
-    print(paste0(Tenant_Url, "/api/rest/v1/workspaces/", Items_BOMs_Workspace_Id, "/items/", dmsId, '/boms'))
     bom_item_req <- httr::GET(paste0(Tenant_Url, "/api/rest/v1/workspaces/", Items_BOMs_Workspace_Id, "/items/", dmsId, '/boms'),
                               httr::add_headers("Content-Type" = "application/json"),
                               set_cookies("JSESSIONID" = JSESSIONID)
