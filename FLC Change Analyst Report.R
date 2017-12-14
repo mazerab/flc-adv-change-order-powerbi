@@ -8,8 +8,8 @@ User_Password = "Input your Autodesk ID password here"
 Tenant_Url = "Input your Fusion Lifecycle site Url here"
 Items_BOMs_Workspace_Id = "Input the workspace Id of your Items & BOMs workspace here"
 Change_Orders_Workspace_Id = "Input the workspace Id of your Change Orders workspace here"
-ECO_Number = "CO000012"
-ECO_DmsId = ""
+Change_Order_DmsId = "Input the dmsId of the change order you want to check on"
+WfItems_DmsId_List = list()
 	
 #Load libraries required for the R script
 library(httr)
@@ -26,12 +26,20 @@ req <- httr::POST(paste0(Tenant_Url, "/rest/auth/1/login"),
 #Extract the cookie
 if (status_code(req) == '200') {
   print(lapply(cookies(req), "[[", 2)$value)
-	search_req <- httr::GET(paste0(Tenant_Url, "/api/v3/search-results?query=", ECO_Number, "&workspace=", Change_Orders_Workspace_Id),
-	                        httr::add_headers("Content-Type" = "application/json"),
-	                        set_cookies("JSESSIONID" = lapply(cookies(req), "[[", 2)$value)
-	);
-	status_code(search_req)
-	content(search_req)
-	# Get list of affected items for that ECO through GET https://adskmazerab.autodeskplm360.net/api/v3/workspaces/9/items/7468/affected-items
-	# Get BOM for each affected items through https://adskmazerab.autodeskplm360.net/api/v3/workspaces/57/items/7422/bom
+  # Get list of affected items for the ECO
+  workflow_items_req <- httr::GET(paste0(Tenant_Url, "/api/rest/v1/workspaces/", Change_Orders_Workspace_Id, "/items/", Change_Order_DmsId, "/workflow-items"),
+                                  httr::add_headers("Content-Type" = "application/json"),
+                                  set_cookies("JSESSIONID" = lapply(cookies(req), "[[", 2)$value)
+  );
+  if (status_code(workflow_items_req) == '200') {
+    workflow_items_content = content(workflow_items_req)
+    if (length(workflow_items_content$list$workflowItem) > 0) { # Ensure the list of affected items is not empty
+      for (wfItem in workflow_items_content$list$workflowItem) {
+        WfItems_DmsId_List <- c(wfItem$masterItem$id, WfItems_DmsId_List)
+      }
+    }
+  }
+  
+  # Get BOM for each affected items through https://adskmazerab.autodeskplm360.net/api/v3/workspaces/57/items/7422/bom 
+  print(WfItems_DmsId_List) # list of the affected items' dmsIds ...
 }
