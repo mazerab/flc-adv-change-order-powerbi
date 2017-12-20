@@ -12,4 +12,4 @@ A change order is then created and this BOM is added to it alongside its unrelea
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/change%20order.png)
 
 At a later stage but prior to the release of our change order, the BOM is modified: CA Part 2 is replaced by CA Part 4.
-![alt text]()
+![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/after%20BOM.png)
