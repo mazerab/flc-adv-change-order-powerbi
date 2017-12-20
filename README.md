@@ -7,3 +7,6 @@ When you define the Change Order, you have to list all the items to be approved 
 
 As an example, let's consider this simple BOM
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/before%20BOM.png)
+
+
+![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/change%20order.png)
