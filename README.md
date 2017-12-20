@@ -8,5 +8,5 @@ When you define the Change Order, you have to list all the items to be approved 
 As an example, let's consider this simple BOM
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/before%20BOM.png)
 
-
+A change order is then created and this BOM is added to it alongside its unreleased direct child. Finally, a separate item is added to the change as well.
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/change%20order.png)
