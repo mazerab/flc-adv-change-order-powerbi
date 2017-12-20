@@ -69,8 +69,14 @@ if (status_code(req) == '200') {
 for (bomItem in BOMItems_Descriptor_List) {
   if (endsWith(bomItem, "[REV:w]")) {
     if (!(bomItem %in% WfItems_Descriptor_List)) {
-      print("Found a BOM item that is not in the list of affected items of this change order!")
-      print(bomItem)
+      BOMItems_Problem_List <-c(bomItem, BOMItems_Problem_List)
     }
+  }
+}
+
+if (length(BOMItems_Problem_List) > 0) {
+  print("Found BOM item(s) that is(are) not in the list of affected items of this change order!")
+  for (bomItem in BOMItems_Problem_List) {
+    print(bomItem)
   }
 }
