@@ -12,6 +12,7 @@ Change_Order_DmsId = "Input the dmsId of the change order you want to check on"
 WfItems_DmsId_List = list()
 WfItems_Descriptor_List = list()
 BOMItems_Descriptor_List = list()
+BOMItems_Problem_List = list()
 JSESSIONID = ""
 
 #Load libraries required for the R script
