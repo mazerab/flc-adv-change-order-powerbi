@@ -10,20 +10,25 @@ Items_BOMs_Workspace_Id = "Input the workspace Id of your Items & BOMs workspace
 Change_Orders_Workspace_Id = "Input the workspace Id of your Change Orders workspace here"
 Change_Order_DmsId = "Input the dmsId of the change order you want to check on"
 WfItems_DmsId_List = list()
+WfItems_Descriptor_List = list()
+BOMItems_Descriptor_List = list()
 JSESSIONID = ""
-	
+
 #Load libraries required for the R script
 library(httr)
 library(jsonlite)
-	
+
 #Use Fusion Lifecycle Authentication REST V1 API to get access token
 login_body <- list(userID = User_Name, password = User_Password)
 login_body = toJSON(login_body, pretty = TRUE, auto_unbox = TRUE)
 req <- httr::POST(paste0(Tenant_Url, "/rest/auth/1/login"),
-                  httr::add_headers("Accept" = "application/json","Content-Type" = "application/json"),
+                  httr::add_headers(
+                    "Accept" = "application/json",
+                    "Content-Type" = "application/json"
+                  ),
                   body = login_body
 );
-	
+
 #Extract the cookie
 if (status_code(req) == '200') {
   JSESSIONID = lapply(cookies(req), "[[", 2)$value
@@ -37,11 +42,12 @@ if (status_code(req) == '200') {
     if (length(workflow_items_content$list$workflowItem) > 0) { # Ensure the list of affected items is not empty
       for (wfItem in workflow_items_content$list$workflowItem) {
         WfItems_DmsId_List <- c(wfItem$masterItem$id, WfItems_DmsId_List)
+        WfItems_Descriptor_List <- c(wfItem$masterItem$details$descriptor, WfItems_Descriptor_List)
       }
     }
   }
   
- # Get BOM for each affected items through https://adskmazerab.autodeskplm360.net/api/v3/workspaces/57/items/7422/bom 
+  # Get BOM for each affected items
   for (dmsId in WfItems_DmsId_List) {
     bom_item_req <- httr::GET(paste0(Tenant_Url, "/api/rest/v1/workspaces/", Items_BOMs_Workspace_Id, "/items/", dmsId, '/boms'),
                               httr::add_headers("Content-Type" = "application/json"),
@@ -49,8 +55,21 @@ if (status_code(req) == '200') {
     );
     if (status_code(bom_item_req) == '200') {
       bom_item_content = content(bom_item_req)
-      print(bom_item_content)
+      if (length(bom_item_content$list$data) > 0) {
+        for (bomItem in bom_item_content$list$data) {
+          BOMItems_Descriptor_List <-c(bomItem$`bom-item`$descriptor, BOMItems_Descriptor_List)
+        }
+      }
     }
   }
-	
+  
+}
+
+for (bomItem in BOMItems_Descriptor_List) {
+  if (endsWith(bomItem, "[REV:w]")) {
+    if (!(bomItem %in% WfItems_Descriptor_List)) {
+      print("Found a BOM item that is not in the list of affected items of this change order!")
+      print(bomItem)
+    }
+  }
 }
