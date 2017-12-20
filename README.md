@@ -14,4 +14,4 @@ A change order is then created and this BOM is added to it alongside its unrelea
 At a later stage but prior to the release of our change order, the BOM is modified: CA Part 2 is replaced by CA Part 4.
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/after%20BOM.png)
 
-As indicated earlier, it is very difficult for a change analyst to detect this types of problem while reviewing a change and getting it ready for approval. 
+As indicated earlier, it is very difficult for a change analyst to detect this type of problems while reviewing a change and getting it ready for approval. 
