@@ -74,9 +74,17 @@ for (bomItem in BOMItems_Descriptor_List) {
   }
 }
 
+#create data frame for PowerBI.
+WfItems_Descriptor_Frame <- data.frame(matrix(data=sapply(WfItems_Descriptor_List, as.character), ncol=1, byrow=TRUE))
+names(WfItems_Descriptor_Frame)[startsWith(names(WfItems_Descriptor_Frame),"matrix.data")] <- "Affected Items"
+WfItems_Descriptor_Frame
+
+BOMItems_Descriptor_Frame <- data.frame(matrix(data=sapply(BOMItems_Descriptor_List, as.character), ncol=1, byrow=TRUE))
+names(BOMItems_Descriptor_Frame)[startsWith(names(BOMItems_Descriptor_Frame),"matrix.data")] <- "BOM Items"
+BOMItems_Descriptor_Frame
+
 if (length(BOMItems_Problem_List) > 0) {
-  print("Found BOM item(s) that is(are) not in the list of affected items of this change order!")
-  for (bomItem in BOMItems_Problem_List) {
-    print(bomItem)
-  }
+  BOMItems_Problem_Frame <- data.frame(matrix(data=sapply(BOMItems_Problem_List, as.character), ncol=1, byrow=TRUE))
+  names(BOMItems_Problem_Frame)[startsWith(names(BOMItems_Problem_Frame),"matrix.data")] <- "Problem Items"
+  BOMItems_Problem_Frame
 }
