@@ -9,7 +9,7 @@ Tenant_Name <- """&Text.From(#"Tenant_Name")&"""
 Items_BOMs_Workspace_Id <- """&Text.From(#"Items_BOMs_Workspace_Id")&"""
 Change_Orders_Workspace_Id <- """&Text.From(#"Change_Orders_Workspace_Id")&"""
 Change_Order_DmsId <- """&Text.From(#"Change_Order_DmsId")&"""
-Tenant_URL = paste0("https://", Tenant_Name, ".autodeskplm360.net")
+Tenant_Url = paste0("https://", Tenant_Name, ".autodeskplm360.net")
 
 WfItems_DmsId_List = list()
 WfItems_Descriptor_List = list()
