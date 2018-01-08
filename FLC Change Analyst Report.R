@@ -1,14 +1,16 @@
-#########################################################################################	
-## This R script is a sample code that demonstrate
+#########################################################################################
+## This R script is a sample code that demonstrate 
 ## how to extract information from two workspaces using Autodesk Fusion Lifecycle V3 API.
 #########################################################################################
 # Define Fusion Lifecycle username and password, and tenant URL
-User_Name = "Input your Autodesk ID here"
-User_Password = "Input your Autodesk ID password here"
-Tenant_Url = "Input your Fusion Lifecycle site Url here"
-Items_BOMs_Workspace_Id = "Input the workspace Id of your Items & BOMs workspace here"
-Change_Orders_Workspace_Id = "Input the workspace Id of your Change Orders workspace here"
-Change_Order_DmsId = "Input the dmsId of the change order you want to check on"
+User_Name <- """&Text.From(#"User_Name")&"""
+User_Password <- """&Text.From(#"User_Password")&"""
+Tenant_Name <- """&Text.From(#"Tenant_Name")&"""
+Items_BOMs_Workspace_Id <- """&Text.From(#"Items_BOMs_Workspace_Id")&"""
+Change_Orders_Workspace_Id <- """&Text.From(#"Change_Orders_Workspace_Id")&"""
+Change_Order_DmsId <- """&Text.From(#"Change_Order_DmsId")&"""
+Tenant_URL = paste0("https://", Tenant_Name, ".autodeskplm360.net")
+
 WfItems_DmsId_List = list()
 WfItems_Descriptor_List = list()
 BOMItems_Descriptor_List = list()
@@ -58,7 +60,9 @@ if (status_code(req) == '200') {
       bom_item_content = content(bom_item_req)
       if (length(bom_item_content$list$data) > 0) {
         for (bomItem in bom_item_content$list$data) {
-          BOMItems_Descriptor_List <-c(bomItem$`bom-item`$descriptor, BOMItems_Descriptor_List)
+          if (!(is.element(bomItem$`bom-item`$descriptor, BOMItems_Descriptor_List))) {
+            BOMItems_Descriptor_List <-c(bomItem$`bom-item`$descriptor, BOMItems_Descriptor_List)
+          }
         }
       }
     }
