@@ -19,3 +19,7 @@ At a later stage but prior to the release of our change order, the BOM is modifi
 As indicated earlier, it is very difficult for a change analyst to detect this type of problems while reviewing a change and getting it ready for approval. 
 
 # Setup
+
+Before using this app, you need to install PowerBI Desktop [PowerBI Desktop](https://powerbi.microsoft.com/en-us/desktop/).
+
+After the desktop client is successfully installed, download the PowerBI Template [](). Launch PowerBI Desktop and open the template. 
