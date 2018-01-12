@@ -3,12 +3,12 @@
 ## how to extract information from two workspaces using Autodesk Fusion Lifecycle V3 API.
 #########################################################################################
 # Define Fusion Lifecycle username and password, and tenant URL
-User_Name <- """&Text.From(#"User_Name")&"""
-User_Password <- """&Text.From(#"User_Password")&"""
-Tenant_Name <- """&Text.From(#"Tenant_Name")&"""
-Items_BOMs_Workspace_Id <- """&Text.From(#"Items_BOMs_Workspace_Id")&"""
-Change_Orders_Workspace_Id <- """&Text.From(#"Change_Orders_Workspace_Id")&"""
-Change_Order_DmsId <- """&Text.From(#"Change_Order_DmsId")&"""
+User_Name <- "<Your Fusion Lifecycle Login Name>"
+User_Password <- "<Your Fusion Lifecycle Login Password>"
+Tenant_Name <- "<Your Fusion Lifecycle Site Name>"
+Items_BOMs_Workspace_Id <- "<ID of your Items and BOMs workspace, typically 57 ...>"
+Change_Orders_Workspace_Id <- "<ID of your Change Orders workspace, typically 9 ...>"
+Change_Order_DmsId <- "<dmsID of your Change Order>"
 Tenant_Url = paste0("https://", Tenant_Name, ".autodeskplm360.net")
 
 WfItems_DmsId_List = list()
