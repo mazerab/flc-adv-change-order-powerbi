@@ -1,5 +1,5 @@
 # flc-adv-change-order-powerbi
-R script that uses Fusion Lifecycle V3 API to enable cross-workspace reporting
+R script that uses Fusion Lifecycle V1 API to enable cross-workspace reporting
 
 # Description
 
@@ -28,5 +28,6 @@ After the desktop client is successfully installed, follow these easy steps:
 - Launch PowerBI Desktop and open the template. 
 - Enter the correct values in the parameters dialog.
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/PowerBI%20Parameters.png)
+  To find the dmsID of the change order, simply open the change order in your browser and copy the dmsID value found in the URL in the address bar.
 - Review the results
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/Report%20Results.png)
