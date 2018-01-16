@@ -25,6 +25,7 @@ Before using this app, you need to install PowerBI Desktop [PowerBI Desktop](htt
 After the desktop client is successfully installed, follow these easy steps:
 
 - Download the PowerBI Template [Change Analyst Problem Report](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/Change%20Analyst%20Problem%20Report.pbit). 
+- Install R script [R Script for Windows](https://docs.microsoft.com/en-us/power-bi/desktop-r-scripts)
 - Launch PowerBI Desktop and open the template. 
 - Enter the correct values in the parameters dialog.
 ![alt text](https://github.com/mazerab/flc-adv-change-order-powerbi/blob/master/www/img/PowerBI%20Parameters.png)
